@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/loginsignin.css">
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="top-link">
+            <a class="home-link-a" href="{{ url_for('home') }}">Trippy</a>
+        </div>
+
+        <div class="main-heading">
+            <h1>Register Page</h1>
+        </div>
+
+        {% for message in get_flashed_messages() %}
+        <div class="flash-message {{ message[1] }}">
+            {{ message[0] }}
+        </div>
+        {% endfor %}
+
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+
+            <label for="name">Name:</label>
+            {{ form.name }}
+
+            <label for="username">Username:</label>
+            {{ form.username }}
+
+            <label for="password">Password:</label>
+            {{ form.password }}
+
+            <label for="phone_number">Phone Number:</label>
+            {{ form.phone_number }}
+
+            <label for="email">Email:</label>
+            {{ form.email }}
+
+            {{ form.submit }}
+        </form>
+
+        <a href="{{ url_for('login') }}">Already have an account? Log In</a>
+    </div>
+</body>
+
+</html>

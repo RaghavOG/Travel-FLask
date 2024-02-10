@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trippy - Your Travel Companion</title>
+    <link rel="stylesheet" href="../static/landing.css">
+</head>
+<body>
+    <header>
+        <h1 class="site-heading">Trippy</h1>
+    </header>
+    <div class="video-container">
+        <video autoplay loop muted class="fullscreen-bg__video">
+            <source src="../static/beach.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="main">
+        <p>"Trippy: Where Maps Meet Memories."</p>
+        <a href="{{ url_for('home_page') }}"><p>Explore</p></a>
+        <a href="{{ url_for('login') }}"><p>Login</p></a>
+    </div>
+</body>
+
+</html>
