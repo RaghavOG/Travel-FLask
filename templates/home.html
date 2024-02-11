@@ -21,7 +21,7 @@
         {% if current_user.is_authenticated %}
         <p>Welcome, {{ current_user.name }}!</p>
         {% else %}
-      
+
         <p>Trippy - Chose Your Destination</p>
 
         {% endif %}
@@ -38,11 +38,9 @@
             <div id="login-button">
                 <a href="{{ url_for('login') }}">Login</a>
             </div>
-    
+
             {% endif %}
 
-
-           
         </div>
 
     </nav>
@@ -52,7 +50,6 @@
                 <h2>Religious</h2>
                 <video autoplay muted loop>
                     <source src="../static/Videos/religious.mp4" type="video/mp4">
-
                 </video>
             </a>
         </div>
@@ -61,17 +58,14 @@
                 <h2>Mountains</h2>
                 <video autoplay muted loop>
                     <source src="../static/Videos/mountain.mp4" type="video/mp4">
+                </video>
             </a>
-
-            </video>
         </div>
         <div class="collage-item beaches">
             <a href="#">
                 <h2>Beaches</h2>
                 <video autoplay muted loop>
                     <source src="../static/Videos/vid_beach.mp4" type="video/mp4">
-
-
                 </video>
             </a>
         </div>
@@ -80,8 +74,6 @@
                 <h2>Historical</h2>
                 <video autoplay muted loop>
                     <source src="../static/Videos/historical.mp4" type="video/mp4">
-
-
                 </video>
             </a>
         </div>
@@ -90,27 +82,110 @@
                 <h2>Deserts</h2>
                 <video autoplay muted loop>
                     <source src="../static/Videos/desert.mp4" type="video/mp4">
-
-
                 </video>
             </a>
         </div>
     </div>
 
-   <div class="hr"></div>
+    <div class="hr"></div>
 
+    <script>
+        var isLoggedIn = "{{ current_user.is_authenticated }}";
+        var loginButton = document.getElementById("login-button");
+        loginButton.classList.toggle("hidden", isLoggedIn);
+    </script>
+  
 
+    <!-- BLACKBOX AI -->
 
-   <script>
-    // Check if the user is logged in
-    var isLoggedIn = "{{ current_user.is_authenticated }}";
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var isLoggedIn = "{{ current_user.is_authenticated }}";
+          var loginButton = document.getElementById("login-button");
+          loginButton.classList.toggle("hidden", isLoggedIn);
+      
+          var locationsContainer = document.getElementById("locationsContainer");
+      
+          if (data && data.locationsData && data.locationsData.length > 0) {
+            for (let i = 0; i < data.locationsData.length; i++) {
+              const location = data.locationsData[i];
+      
+              var locationRow = document.createElement("div");
+              locationRow.classList.add("category-item");
+      
+              if (location.category === "mountainous") {
+                locationRow.classList.add("mountainous");
+                locationRow.innerHTML = `
+                  <div class="location-details">
+                    <h3>${location.name}</h3>
+                    <p>${location.distance} away</p>
+                    <p>${location.dateRange}</p>
+                    <p>${location.price} night</p>
+                  </div>
+                  <div class="rating">
+                    <p>${location.rating}</p>
+                  </div>
+                `;
+              } else if (location.category === "historical") {
+                locationRow.classList.add("historical");
+                locationRow.innerHTML = `
+                  <div class="location-details">
+                    <h3>${location.name}</h3>
+                    <p>${location.distance} away</p>
+                    <p>${location.dateRange}</p>
+                    <p>${location.price} night</p>
+                  </div>
+                  <div class="rating">
+                    <p>${location.rating}</p>
+                  </div>
+                `;
+              } else if (location.category === "religious") {
+                locationRow.classList.add("religious");
+                locationRow.innerHTML = `
+                  <div class="location-details">
+                    <h3>${location.name}</h3>
+                    <p>${location.distance} away</p>
+                    <p>${location.dateRange}</p>
+                    <p>${location.price} night</p>
+                  </div>
+                  <div class="rating">
+                    <p>${location.rating}</p>
+                  </div>
+                `;
+              } else if (location.category === "beaches") {
+                locationRow.classList.add("beaches");
+                locationRow.innerHTML = `
+                  <div class="location-details">
+                    <h3>${location.name}</h3>
+                    <p>${location.distance} away</p>
+                    <p>${location.dateRange}</p>
+                    <p>${location.price} night</p>
+                  </div>
+                  <div class="rating">
+                    <p>${location.rating}</p>
+                  </div>
+                `;
+              } else if (location.category === "deserts") {
+                locationRow.classList.add("deserts");
+                locationRow.innerHTML = `
+                  <div class="location-details">
+                    <h3>${location.name}</h3>
+                    <p>${location.distance} away</p>
+                    <p>${location.dateRange}</p>
+                    <p>${location.price} night</p>
+                  </div>
+                  <div class="rating">
+                    <p>${location.rating}</p>
+                  </div>
+                `;
+              }
+      
+              locationsContainer.appendChild(locationRow);
+            }
+          }
+        });
+      </script>
 
-    // Get the login button element
-    var loginButton = document.getElementById("login-button");
-
-    // Show the login button if the user is not logged in
-    loginButton.classList.toggle("hidden", isLoggedIn);
-</script>   
 
 
 </body>

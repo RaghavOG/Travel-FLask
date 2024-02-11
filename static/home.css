@@ -162,3 +162,42 @@ nav ul li a:hover {
 .hidden {
     display: none;
 }
+
+/* ... Your existing code ... */
+
+.category-section {
+    margin: 20px;
+}
+
+.category-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.category-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.category-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-item {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ... Your existing code ... */

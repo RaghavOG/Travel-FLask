@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash , jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -6,8 +6,12 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
-import os
 from datetime import datetime
+import json
+import os
+import requests
+import json
+
 
 load_dotenv()
 
@@ -78,6 +82,7 @@ class LoginForm(FlaskForm):
 
 @app.route('/')
 def home():
+    
     return render_template('landing.html')
 
 
@@ -135,6 +140,12 @@ def register():
 
     return render_template('register.html', form=form)
 
+
+@app.route('/api/locations')
+def get_locations():
+    with open('./static/location.json', 'r') as f:
+        data = json.load(f)
+    return jsonify(data)
 
 with app.app_context():
     db.create_all()
