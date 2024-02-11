@@ -130,7 +130,8 @@ nav ul li a:hover {
     width: 95%;
     height: 2px;
     background-color: black;
-    margin: 0 auto;
+    margin: 5em auto;
+    background-color: #000000;
 }
 
 
@@ -165,39 +166,51 @@ nav ul li a:hover {
 
 /* ... Your existing code ... */
 
-.category-section {
-    margin: 20px;
-}
-
-.category-section h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.category-section p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-.category-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.category-item {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+.heading-locations{
+    margin-top: 2em;
+    font-size: 4em;
+    font-weight: bold;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Protest Revolution', sans-serif;
+    letter-spacing: 3px;
+    margin: 20px 0;
+
+}
+.category-heading{
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Protest Revolution', sans-serif;
+    letter-spacing: 3px;
+    margin: 20px 0;
+
+}
+.category-container{
+    width: 90%;
+    margin: 0 auto;
+
 }
 
-.category-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+.location-container{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 1.5em;
+margin: 0 1.1em;
 }
 
-/* ... Your existing code ... */
+.location-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+
+}
+
+
+
+
+
+
+

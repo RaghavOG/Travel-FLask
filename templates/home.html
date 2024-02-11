@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explore Destinations</title>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <style>
@@ -11,13 +11,11 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="../static/home.css">
+    <link rel="stylesheet" href="../static/home.css" />
 </head>
 
 <body>
-
     <nav>
-
         {% if current_user.is_authenticated %}
         <p>Welcome, {{ current_user.name }}!</p>
         {% else %}
@@ -27,8 +25,8 @@
         {% endif %}
         <!-- search bar -->
         <div class="search-bar">
-            <input type="text" placeholder="Search">
-            <button><box-icon name='search'></box-icon></button>
+            <input type="text" placeholder="Search" />
+            <button><box-icon name="search"></box-icon></button>
 
             {% if current_user.is_authenticated %}
             <div id="login-button">
@@ -40,48 +38,46 @@
             </div>
 
             {% endif %}
-
         </div>
-
     </nav>
     <div class="collage">
         <div class="collage-item religious">
-            <a href="#">
+            <a href="#religious">
                 <h2>Religious</h2>
                 <video autoplay muted loop>
-                    <source src="../static/Videos/religious.mp4" type="video/mp4">
+                    <source src="../static/Videos/religious.mp4" type="video/mp4" />
                 </video>
             </a>
         </div>
         <div class="collage-item mountains">
-            <a href="#">
+            <a href="#mountainous">
                 <h2>Mountains</h2>
                 <video autoplay muted loop>
-                    <source src="../static/Videos/mountain.mp4" type="video/mp4">
+                    <source src="../static/Videos/mountain.mp4" type="video/mp4" />
                 </video>
             </a>
         </div>
         <div class="collage-item beaches">
-            <a href="#">
+            <a href="#beaches">
                 <h2>Beaches</h2>
                 <video autoplay muted loop>
-                    <source src="../static/Videos/vid_beach.mp4" type="video/mp4">
+                    <source src="../static/Videos/vid_beach.mp4" type="video/mp4" />
                 </video>
             </a>
         </div>
         <div class="collage-item historical">
-            <a href="#">
+            <a href="#historical">
                 <h2>Historical</h2>
                 <video autoplay muted loop>
-                    <source src="../static/Videos/historical.mp4" type="video/mp4">
+                    <source src="../static/Videos/historical.mp4" type="video/mp4" />
                 </video>
             </a>
         </div>
         <div class="collage-item deserts">
-            <a href="#">
+            <a href="#deserts">
                 <h2>Deserts</h2>
                 <video autoplay muted loop>
-                    <source src="../static/Videos/desert.mp4" type="video/mp4">
+                    <source src="../static/Videos/desert.mp4" type="video/mp4" />
                 </video>
             </a>
         </div>
@@ -89,105 +85,33 @@
 
     <div class="hr"></div>
 
+    <h1 class="heading-locations">Famous Locations</h1>
+    <div class="category-container">
+
+    {% set categories = ['religious', 'mountainous', 'beaches', 'historical', 'desert'] %}
+    {% for category in categories %}
+    <h2 class="category-heading">{{ 'Top ' + category + ' Places' }}</h2>
+    <div class="location-container">
+        {% for location in data %}
+            {% if location.category == category %}
+                <div class="location-div" id="{{ location.category }}">
+                    <img src="{{ location.image }}" alt="location image" width="200" height="200" />
+                    <p>{{location.name}}</p>
+                    <p>{{location.price}}</p>
+                    <p>{{location.rating}}</p>
+                    <p>{{location.description}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="hr"></div>
+    {% endfor %}
+    </div>
     <script>
         var isLoggedIn = "{{ current_user.is_authenticated }}";
         var loginButton = document.getElementById("login-button");
         loginButton.classList.toggle("hidden", isLoggedIn);
     </script>
-  
-
-    <!-- BLACKBOX AI -->
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          var isLoggedIn = "{{ current_user.is_authenticated }}";
-          var loginButton = document.getElementById("login-button");
-          loginButton.classList.toggle("hidden", isLoggedIn);
-      
-          var locationsContainer = document.getElementById("locationsContainer");
-      
-          if (data && data.locationsData && data.locationsData.length > 0) {
-            for (let i = 0; i < data.locationsData.length; i++) {
-              const location = data.locationsData[i];
-      
-              var locationRow = document.createElement("div");
-              locationRow.classList.add("category-item");
-      
-              if (location.category === "mountainous") {
-                locationRow.classList.add("mountainous");
-                locationRow.innerHTML = `
-                  <div class="location-details">
-                    <h3>${location.name}</h3>
-                    <p>${location.distance} away</p>
-                    <p>${location.dateRange}</p>
-                    <p>${location.price} night</p>
-                  </div>
-                  <div class="rating">
-                    <p>${location.rating}</p>
-                  </div>
-                `;
-              } else if (location.category === "historical") {
-                locationRow.classList.add("historical");
-                locationRow.innerHTML = `
-                  <div class="location-details">
-                    <h3>${location.name}</h3>
-                    <p>${location.distance} away</p>
-                    <p>${location.dateRange}</p>
-                    <p>${location.price} night</p>
-                  </div>
-                  <div class="rating">
-                    <p>${location.rating}</p>
-                  </div>
-                `;
-              } else if (location.category === "religious") {
-                locationRow.classList.add("religious");
-                locationRow.innerHTML = `
-                  <div class="location-details">
-                    <h3>${location.name}</h3>
-                    <p>${location.distance} away</p>
-                    <p>${location.dateRange}</p>
-                    <p>${location.price} night</p>
-                  </div>
-                  <div class="rating">
-                    <p>${location.rating}</p>
-                  </div>
-                `;
-              } else if (location.category === "beaches") {
-                locationRow.classList.add("beaches");
-                locationRow.innerHTML = `
-                  <div class="location-details">
-                    <h3>${location.name}</h3>
-                    <p>${location.distance} away</p>
-                    <p>${location.dateRange}</p>
-                    <p>${location.price} night</p>
-                  </div>
-                  <div class="rating">
-                    <p>${location.rating}</p>
-                  </div>
-                `;
-              } else if (location.category === "deserts") {
-                locationRow.classList.add("deserts");
-                locationRow.innerHTML = `
-                  <div class="location-details">
-                    <h3>${location.name}</h3>
-                    <p>${location.distance} away</p>
-                    <p>${location.dateRange}</p>
-                    <p>${location.price} night</p>
-                  </div>
-                  <div class="rating">
-                    <p>${location.rating}</p>
-                  </div>
-                `;
-              }
-      
-              locationsContainer.appendChild(locationRow);
-            }
-          }
-        });
-      </script>
-
-
-
 </body>
 
 </html>

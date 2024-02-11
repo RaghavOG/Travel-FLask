@@ -1,0 +1,446 @@
+[
+    {
+      "id": 16,
+      "category": "religious",
+      "name": "Varanasi Spiritual Retreat",
+      "rating": 4.3,
+      "price": 150,
+      "description": "Immerse yourself in the spiritual vibes of Varanasi, one of the oldest cities in India.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 17,
+      "category": "religious",
+      "name": "Jerusalem Pilgrimage",
+      "rating": 4.7,
+      "price": 200,
+      "description": "Embark on a pilgrimage to the holy city of Jerusalem and visit sacred sites.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 18,
+      "category": "religious",
+      "name": "Golden Temple Visit",
+      "rating": 4.5,
+      "price": 180,
+      "description": "Visit the iconic Golden Temple in Amritsar and experience its spiritual significance.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 19,
+      "category": "religious",
+      "name": "Tokyo Shrine Exploration",
+      "rating": 4.2,
+      "price": 160,
+      "description": "Explore traditional shrines and temples in Tokyo, blending modernity with tradition.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 20,
+      "category": "religious",
+      "name": "Mystical Santorini Retreat",
+      "rating": 4.6,
+      "price": 190,
+      "description": "Experience the mystique of Santorini with its white-washed churches and crystal-clear waters.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 29,
+      "category": "religious",
+      "name": "Angkor Wat Pilgrimage",
+      "rating": 4.6,
+      "price": 170,
+      "description": "Embark on a spiritual journey to Angkor Wat, the largest religious monument in the world.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 43,
+      "category": "religious",
+      "name": "Jerusalem Holy Pilgrimage",
+      "rating": 4.9,
+      "price": 250,
+      "description": "Embark on a sacred pilgrimage to Jerusalem, a city with deep religious significance.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 44,
+      "category": "religious",
+      "name": "Varanasi Spiritual Retreat",
+      "rating": 4.5,
+      "price": 190,
+      "description": "Experience the spiritual essence of Varanasi, one of the oldest inhabited cities in the world.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 45,
+      "category": "religious",
+      "name": "Lhasa Tibetan Monastery Tour",
+      "rating": 4.8,
+      "price": 230,
+      "description": "Immerse yourself in Tibetan culture with a monastery tour in the heart of Lhasa.",
+      "image": "../static/travel.jpg"
+    },
+    {
+      "id": 46,
+      "category": "religious",
+      "name": "Amritsar Golden Temple Visit",
+      "rating": 4.6,
+      "price": 210,
+      "description": "Visit the iconic Golden Temple in Amritsar, a spiritual and architectural marvel.",
+      "image": "../static/travel.jpg"
+    },
+    {
+        "id": 1,
+        "category": "mountainous",
+        "name": "Everest Base Camp",
+        "rating": 4.8,
+        "price": 200,
+        "description": "Embark on a challenging journey to the base camp of the world's highest peak.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 2,
+        "category": "mountainous",
+        "name": "Swiss Alps Adventure",
+        "rating": 4.5,
+        "price": 180,
+        "description": "Experience the charm of the Swiss Alps with picturesque landscapes and alpine villages.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 3,
+        "category": "mountainous",
+        "name": "Rocky Mountain Retreat",
+        "rating": 4.7,
+        "price": 220,
+        "description": "Find solace in the serene surroundings of the Rocky Mountains.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 4,
+        "category": "mountainous",
+        "name": "Himalayan Paradise",
+        "rating": 4.6,
+        "price": 210,
+        "description": "Discover the beauty of the Himalayan range with its diverse flora and fauna.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 5,
+        "category": "mountainous",
+        "name": "Andes Expedition",
+        "rating": 4.9,
+        "price": 230,
+        "description": "Conquer the heights of the Andes and witness breathtaking landscapes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 26,
+        "category": "mountainous",
+        "name": "K2 Summit Expedition",
+        "rating": 4.9,
+        "price": 240,
+        "description": "Embark on a challenging expedition to conquer the summit of K2, the second-highest peak in the world.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 31,
+        "category": "mountainous",
+        "name": "Matterhorn Expedition",
+        "rating": 4.7,
+        "price": 220,
+        "description": "Embark on a thrilling expedition to conquer the iconic Matterhorn peak in the Swiss Alps.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 32,
+        "category": "mountainous",
+        "name": "Himalayan Trekking Adventure",
+        "rating": 4.6,
+        "price": 200,
+        "description": "Experience the breathtaking beauty of the Himalayas on an adventurous trekking expedition.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 33,
+        "category": "mountainous",
+        "name": "Rocky Mountain Retreat",
+        "rating": 4.8,
+        "price": 230,
+        "description": "Escape to the serene Rockies for a mountain retreat, surrounded by stunning landscapes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 34,
+        "category": "mountainous",
+        "name": "Andes Summit Climb",
+        "rating": 4.5,
+        "price": 210,
+        "description": "Challenge yourself with a high-altitude climb to the summit of the majestic Andes Mountains.",
+        "image": "../static/travel.jpg"
+      }, {
+        "id": 21,
+        "category": "beaches",
+        "name": "Tropical Paradise Escape",
+        "rating": 4.9,
+        "price": 230,
+        "description": "Relax on the pristine beaches of a tropical paradise and enjoy the azure waters.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 22,
+        "category": "beaches",
+        "name": "Caribbean Bliss Retreat",
+        "rating": 4.8,
+        "price": 220,
+        "description": "Escape to the Caribbean for a blissful retreat on sandy shores and turquoise seas.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 23,
+        "category": "beaches",
+        "name": "Greek Island Getaway",
+        "rating": 4.7,
+        "price": 210,
+        "description": "Explore the charm of Greek islands with their unique culture and beautiful beaches.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 24,
+        "category": "beaches",
+        "name": "Maldives Serenity",
+        "rating": 4.6,
+        "price": 200,
+        "description": "Experience the serenity of overwater bungalows and crystal-clear waters in the Maldives.",
+        "image": "../static/travel.jpg"
+      }, {
+        "id": 25,
+        "category": "beaches",
+        "name": "Pacific Paradise Retreat",
+        "rating": 4.5,
+        "price": 190,
+        "description": "Discover paradise in the Pacific with secluded beaches and vibrant marine life.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 30,
+        "category": "beaches",
+        "name": "Bora Bora Paradise",
+        "rating": 4.9,
+        "price": 250,
+        "description": "Indulge in luxury on the beautiful beaches of Bora Bora with its overwater bungalows and coral reefs.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 47,
+        "category": "beaches",
+        "name": "Maldives Tropical Getaway",
+        "rating": 4.9,
+        "price": 260,
+        "description": "Escape to the Maldives for a tropical getaway, surrounded by crystal-clear waters and white sandy beaches.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 48,
+        "category": "beaches",
+        "name": "Seychelles Island Paradise",
+        "rating": 4.8,
+        "price": 240,
+        "description": "Experience the allure of Seychelles, an island paradise with pristine beaches and lush landscapes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 49,
+        "category": "beaches",
+        "name": "Phuket Beach Retreat",
+        "rating": 4.7,
+        "price": 220,
+        "description": "Relax and rejuvenate on the beautiful beaches of Phuket, known for its vibrant nightlife and stunning sunsets.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 50,
+        "category": "beaches",
+        "name": "Barbados Coastal Exploration",
+        "rating": 4.6,
+        "price": 200,
+        "description": "Explore the diverse coastal landscapes of Barbados, from lively beaches to secluded coves.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 11,
+        "category": "historical",
+        "name": "Ancient Rome Tour",
+        "rating": 4.6,
+        "price": 180,
+        "description": "Step back in time with a tour of the ancient ruins of Rome and its iconic landmarks.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 12,
+        "category": "historical",
+        "name": "Egyptian Wonders",
+        "rating": 4.9,
+        "price": 220,
+        "description": "Explore the mysteries of ancient Egypt, including the pyramids and Sphinx.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 13,
+        "category": "historical",
+        "name": "Machu Picchu Expedition",
+        "rating": 4.8,
+        "price": 210,
+        "description": "Embark on a journey to the Incan citadel of Machu Picchu amidst the Andes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 14,
+        "category": "historical",
+        "name": "Great Wall Adventure",
+        "rating": 4.7,
+        "price": 200,
+        "description": "Walk along the iconic Great Wall of China and delve into its rich history.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 15,
+        "category": "historical",
+        "name": "Medieval Europe Quest",
+        "rating": 4.5,
+        "price": 190,
+        "description": "Experience the charm of medieval Europe with its castles and cobblestone streets.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 28,
+        "category": "historical",
+        "name": "Palace of Versailles Tour",
+        "rating": 4.8,
+        "price": 190,
+        "description": "Explore the opulent Palace of Versailles, a symbol of royal grandeur and French history.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 39,
+        "category": "historical",
+        "name": "Acropolis Heritage Tour",
+        "rating": 4.8,
+        "price": 200,
+        "description": "Step back in time with a guided tour of the historic Acropolis, a symbol of ancient Greek civilization.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 40,
+        "category": "historical",
+        "name": "Egyptian Pyramids Expedition",
+        "rating": 4.7,
+        "price": 220,
+        "description": "Explore the mysteries of the Egyptian pyramids on an expedition through ancient history.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 41,
+        "category": "historical",
+        "name": "Rome Colosseum Discovery",
+        "rating": 4.9,
+        "price": 240,
+        "description": "Discover the grandeur of the Roman Colosseum, an iconic symbol of ancient Roman engineering.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 42,
+        "category": "historical",
+        "name": "Machu Picchu Expedition",
+        "rating": 4.6,
+        "price": 210,
+        "description": "Embark on a journey to the ancient Incan city of Machu Picchu, nestled in the Andes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 6,
+        "category": "desert",
+        "name": "Sahara Wonders",
+        "rating": 3.9,
+        "price": 120,
+        "description": "Experience the magic of the Sahara Desert with its vast dunes and unique flora.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 7,
+        "category": "desert",
+        "name": "Arabian Nights Oasis",
+        "rating": 4.2,
+        "price": 150,
+        "description": "Journey through the enchanting Arabian desert with its ancient oases.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 8,
+        "category": "desert",
+        "name": "Gobi Desert Expedition",
+        "rating": 3.7,
+        "price": 110,
+        "description": "Explore the unique landscapes of the Gobi Desert and its nomadic culture.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 9,
+        "category": "desert",
+        "name": "Sonoran Desert Retreat",
+        "rating": 4.0,
+        "price": 130,
+        "description": "Relax in the Sonoran Desert and witness stunning sunsets over the cacti.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 10,
+        "category": "desert",
+        "name": "Atacama Desert Discovery",
+        "rating": 4.5,
+        "price": 160,
+        "description": "Discover the otherworldly landscapes of the Atacama Desert, the driest desert on Earth.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 27,
+        "category": "desert",
+        "name": "Namib Desert Safari",
+        "rating": 4.4,
+        "price": 140,
+        "description": "Experience the breathtaking landscapes of the Namib Desert and encounter unique desert-adapted wildlife.",
+        "image": "../static/travel.jpg"
+      },{
+        "id": 35,
+        "category": "desert",
+        "name": "Sahara Dunes Expedition",
+        "rating": 4.4,
+        "price": 150,
+        "description": "Embark on an adventure through the vast Sahara Desert, exploring its mesmerizing dunes.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 36,
+        "category": "desert",
+        "name": "Arizona Desert Road Trip",
+        "rating": 4.6,
+        "price": 160,
+        "description": "Discover the unique landscapes of the Arizona Desert on an unforgettable road trip.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 37,
+        "category": "desert",
+        "name": "Atacama Desert Stargazing",
+        "rating": 4.9,
+        "price": 180,
+        "description": "Experience the magic of the Atacama Desert with its clear skies, perfect for stargazing.",
+        "image": "../static/travel.jpg"
+      },
+      {
+        "id": 38,
+        "category": "desert",
+        "name": "Wadi Rum Nomad Experience",
+        "rating": 4.7,
+        "price": 170,
+        "description": "Immerse yourself in the rich culture of Wadi Rum while exploring its stunning desert landscapes.",
+        "image": "../static/travel.jpg"
+      }
+    
+  ]
+  

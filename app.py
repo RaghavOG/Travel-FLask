@@ -112,7 +112,9 @@ def logout():
 
 @app.route('/home')
 def home_page():
-    return render_template('home.html')
+    with open('static/location.json') as f:
+        data = json.load(f)
+    return render_template('home.html', data=data)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
