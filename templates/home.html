@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <!-- <div class="arrow"><a href="#"><box-icon class="icon" name='up-arrow-alt'></box-icon></a></div> -->
     <nav>
         {% if current_user.is_authenticated %}
         <p>Welcome, {{ current_user.name }}!</p>
@@ -94,13 +95,13 @@
     <div class="location-container">
         {% for location in data %}
             {% if location.category == category %}
-                <div class="location-div" id="{{ location.category }}">
-                    <img src="{{ location.image }}" alt="location image" width="200" height="200" />
-                    <p>{{location.name}}</p>
-                    <p>{{location.price}}</p>
-                    <p>{{location.rating}}</p>
-                    <p>{{location.description}}</p>
-                </div>
+                <a href="#"><div class="location-div" id="{{ location.category }}">
+                    <img src="{{ location.image }}" alt="location image"  />
+                    <p class="name">{{location.name}}</p>
+                    <p class="price">Price : {{location.price}}</p>
+                    <p   class="rating">Rating : {{location.rating}}/5 </p>
+                    <p class="discription">{{location.description}}</p>
+                </div></a>
             {% endif %}
         {% endfor %}
     </div>
