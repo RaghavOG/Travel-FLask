@@ -149,6 +149,28 @@ def get_locations():
         data = json.load(f)
     return jsonify(data)
 
+
+# ====================================================================
+
+
+# ...
+
+@app.route('/destination/<string:destination_name>')
+def destination_page(destination_name):
+    with open('./static/location.json', 'r') as f:
+        data = json.load(f)
+
+    destination = next((loc for loc in data if loc['name'].lower() == destination_name.lower()), None)
+
+    if destination:
+        return render_template('destination_page.html', destination=destination)
+    else:
+        # Handle case where destination is not found
+        return render_template('error_page.html', message='Destination not found')
+
+# ...
+
+
 with app.app_context():
     db.create_all()
 

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/destination_page.css" />
+    <title>{{ destination.name }}</title>
+</head>
+
+<body>
+
+    <nav>
+        {% if current_user.is_authenticated %}
+        <p>Trippy - Chose Your Destination</p>
+        {% else %}
+        <p>Trippy - Chose Your Destination</p>
+
+        {% endif %}
+        <!-- search bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+            <button><box-icon name="search"></box-icon></button>
+
+            {% if current_user.is_authenticated %}
+            <div id="login-button">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+            {% else %}
+            <div id="login-button">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+
+            {% endif %}
+        </div>
+    </nav>
+    <div class="main">
+        
+        <div class="leftyrighty">
+            <img src="{{ destination.image }}" alt="{{ destination.name }}" />
+            <div class="rightyy">
+                <h2>More Details</h2>
+                <p>Name: {{ destination.name }}</p>
+                <p>Rating: {{ destination.rating }}</p>
+                <p>Price: {{ destination.price }}</p>
+                <p>Category: {{ destination.category.capitalize() }}</p>
+                <p>Discription: {{ destination.description }}</p>
+                <div class="rightyy-bottom">
+                    <label for="guests">Number of Guests:</label>
+                    <input type="number" id="guests" name="guests" min="1" value="1">
+    
+                    <label for="check-in">From</label>
+                    <input type="date" id="check-in" name="check-in">
+    
+                    <label for="check-out">To</label>
+                    <input type="date" id="check-out" name="check-out">
+                </div>
+ 
+                 <button type="submit">Book Now</button>
+            </div>
+
+        </div>
+       
+
+    </div>
+</body>
+
+</html>

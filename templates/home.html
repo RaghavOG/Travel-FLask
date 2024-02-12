@@ -95,7 +95,7 @@
     <div class="location-container">
         {% for location in data %}
             {% if location.category == category %}
-                <a href="#"><div class="location-div" id="{{ location.category }}">
+                <a href="{{ url_for('destination_page', destination_name=location.name) }}"><div class="location-div" id="{{ location.category }}">
                     <img src="{{ location.image }}" alt="location image"  />
                     <p class="name">{{location.name}}</p>
                     <p class="price">Price : {{location.price}}</p>
