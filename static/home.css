@@ -77,7 +77,7 @@ nav {
     /* border: none; */
     outline: none;
     font-size: 1.5em;
-    font-family: 'Poor Story', sans-serif;
+    font-family: '', sans-serif;
     padding-left: 20px;
     border-radius: 20px;
 }
@@ -132,6 +132,7 @@ nav ul li a:hover {
     position: relative;
     overflow: hidden;
     border-radius: 20px;
+    
 }
 
 .collage-item h2 {
@@ -287,6 +288,44 @@ color: #000000;
     margin: 0.2em 0 0.2em 0;
 }
 
+
+/* Add this to style the profile dropdown */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #profile-pic {
+    width: 30px; /* Adjust the size as needed */
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .profile-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .profile-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .profile-dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .profile-dropdown:hover .profile-dropdown-content {
+    display: block;
+  }
+  
 
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ current_user.name }}'s Profile</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}" />
+</head>
+<body>
+    <div class="profile-container">
+        <h1>{{ current_user.name }}'s Profile</h1>
+        
+        <div class="profile-details">
+            <div class="profile-picture">
+                <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" />
+            </div>
+            <div class="other-details">
+                <p><strong>Username:</strong> {{ current_user.username }}</p>
+                <p><strong>Email:</strong> {{ current_user.email }}</p>
+                <p><strong>Phone Number:</strong> {{ current_user.phone_number }}</p>
+                <!-- Add more profile details as needed -->
+            </div>
+        </div>
+        
+        <a href="{{ url_for('profile_edit') }}" class="edit-button">Edit Profile</a>
+
+    </div>
+</body>
+</html>

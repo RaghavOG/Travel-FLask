@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../static/profile_edit.css" />
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <form method="POST" enctype="multipart/form-data" action="">
+        {{ form.hidden_tag() }}
+
+        <label for="name">Name:</label>
+        {{ form.name(class="form-control", placeholder="Enter your name", value=form.name.data) }}
+
+        <label for="phone_number">Phone Number:</label>
+        {{ form.phone_number(class="form-control", placeholder="Enter your phone number", value=form.phone_number.data) }}
+
+        <label for="email">Email:</label>
+        {{ form.email(class="form-control", placeholder="Enter your email", value=form.email.data) }}
+
+        <label for="profile_picture">Profile Picture:</label>
+        {{ form.profile_picture(class="form-control") }}
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+    <a href="{{ url_for('profile') }}">Back to Profile</a>
+</body>
+</html>

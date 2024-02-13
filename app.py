@@ -7,9 +7,12 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 from datetime import datetime
+from flask_wtf.file import FileField, FileAllowed
+from werkzeug.utils import secure_filename
+import secrets
+from PIL import Image
 import json
 import os
-import requests
 import json
 
 
@@ -18,7 +21,7 @@ load_dotenv()
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
@@ -34,21 +37,36 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))  # Add this line for the name field
+    name = db.Column(db.String(50))  
     phone_number = db.Column(db.String(15), unique=True, nullable=False)
     email = db.Column(db.String(120))
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    profile_picture = db.Column(db.String(100), default='default.jpg')
+    
+    def get_profile_picture_url(self):
+        if not self.profile_picture or self.profile_picture == 'default.jpg':
+            return url_for('static', filename='profile_pics/default.jpg')
+        else:
+            return url_for('static', filename=f'profile_pics/{self.profile_picture}')
 
 
 
-
+class EditProfileForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "Name"})
+    phone_number = StringField('Phone Number', validators=[InputRequired(), Length(min=10, max=15)], render_kw={"placeholder": "Phone Number"})
+    email = StringField(render_kw={"placeholder": "Email"})
+    profile_picture = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    submit = SubmitField('Save Changes')
+    
+    
 class RegisterForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "Name"})
     phone_number = StringField('Phone Number', validators=[InputRequired(), Length(min=10, max=15)], render_kw={"placeholder": "Phone Number"})
     email = StringField(render_kw={"placeholder": "Email"})
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
     password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)], render_kw={"placeholder": "Password"})
+    profile_picture = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
 
     submit = SubmitField('Register')
     
@@ -65,6 +83,30 @@ class RegisterForm(FlaskForm):
         if existing_user_username:
             raise ValidationError(
                 'That username already exists. Please choose a different one.')
+
+
+def save_profile_picture(form_picture):
+    if isinstance(form_picture, str):
+        
+        return form_picture
+
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+
+    
+    profile_pics_folder = os.path.join(app.root_path, 'static/profile_pics')
+    if not os.path.exists(profile_pics_folder):
+        os.makedirs(profile_pics_folder)
+
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
 
 
 
@@ -98,6 +140,37 @@ def login():
             flash('Invalid username or password', 'danger')
     return render_template('login.html', form=form)
 
+
+
+@app.route('/profile_edit', methods=['GET', 'POST'])
+@login_required
+def profile_edit():
+    form = EditProfileForm(obj=current_user)
+
+    if form.validate_on_submit():
+        try:
+         
+            form.populate_obj(current_user) 
+
+           
+            if form.profile_picture.data:
+                picture_file = save_profile_picture(form.profile_picture.data)
+                current_user.profile_picture = picture_file
+
+           
+            print(f'Form data: {form.data}')
+            print(f'User object: {current_user}')
+
+            db.session.commit()
+            flash('Profile updated successfully!', 'success')
+            return redirect(url_for('profile_edit'))
+
+        except Exception as e:
+            db.session.rollback()  
+            flash('An error occurred while updating the profile. Please try again.', 'danger')
+            print(f'Error updating profile: {e}')
+
+    return render_template('profile_edit.html', form=form)
 
 
 
@@ -134,6 +207,9 @@ def register():
             username=form.username.data,
             password=hashed_password
         )
+        if form.profile_picture.data:
+            picture_file = save_profile_picture(form.profile_picture.data)
+            new_user.profile_picture = picture_file
         db.session.add(new_user)
         db.session.commit()
 
@@ -142,6 +218,26 @@ def register():
 
     return render_template('register.html', form=form)
 
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = EditProfileForm(obj=current_user)
+
+    if form.validate_on_submit():
+        current_user.name = form.name.data
+        current_user.phone_number = form.phone_number.data
+        current_user.email = form.email.data
+
+        if form.profile_picture:
+            picture_file = save_profile_picture(form.profile_picture.data)
+            current_user.profile_picture = picture_file
+
+        db.session.commit()
+
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('profile'))
+
+    return render_template('profile.html', form=form)
 
 @app.route('/api/locations')
 def get_locations():
@@ -150,10 +246,6 @@ def get_locations():
     return jsonify(data)
 
 
-# ====================================================================
-
-
-# ...
 
 @app.route('/destination/<string:destination_name>')
 def destination_page(destination_name):
@@ -165,10 +257,9 @@ def destination_page(destination_name):
     if destination:
         return render_template('destination_page.html', destination=destination)
     else:
-        # Handle case where destination is not found
+       
         return render_template('error_page.html', message='Destination not found')
 
-# ...
 
 
 with app.app_context():

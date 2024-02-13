@@ -30,9 +30,13 @@
             <button><box-icon name="search"></box-icon></button>
 
             {% if current_user.is_authenticated %}
-            <div id="login-button">
-                <a href="{{ url_for('logout') }}">Logout</a>
-            </div>
+            <div class="profile-dropdown">
+                <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" id="profile-pic" onclick="toggleProfileDropdown()">
+                <div class="profile-dropdown-content" id="profile-dropdown-content">
+                  <a href="{{ url_for('profile') }}">Profile</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+              </div>
             {% else %}
             <div id="login-button">
                 <a href="{{ url_for('login') }}">Login</a>
@@ -112,6 +116,22 @@
         var isLoggedIn = "{{ current_user.is_authenticated }}";
         var loginButton = document.getElementById("login-button");
         loginButton.classList.toggle("hidden", isLoggedIn);
+
+
+        function toggleProfileDropdown() {
+            var dropdown = document.getElementById("profile-dropdown-content");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+          }
+          
+          // Close the dropdown if the user clicks outside of it
+          window.onclick = function (event) {
+            if (!event.target.matches('#profile-pic')) {
+              var dropdown = document.getElementById("profile-dropdown-content");
+              if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+              }
+            }
+          };
     </script>
 </body>
 

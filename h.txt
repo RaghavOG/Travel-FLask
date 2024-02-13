@@ -1,9 +1,0 @@
- <ul>
-        {% for location in data %}
-            <li>{{ location.name }} ({{ location.category }})</li>
-            <!-- Load image from json -->
-            <img src="{{ location.image }}" alt="{{ location.name }}">
-            
-        {% endfor %}
-    </ul>
-
