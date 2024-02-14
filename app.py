@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash , jsonify
+from flask import Flask, render_template, redirect, url_for, flash , jsonify , session , sessions
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -6,7 +6,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import timedelta , datetime
 from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
 import secrets
@@ -23,6 +23,7 @@ bcrypt = Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
 db = SQLAlchemy(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -86,6 +87,7 @@ class RegisterForm(FlaskForm):
 
 
 def save_profile_picture(form_picture):
+    print(f'Form picture: {form_picture}')
     if isinstance(form_picture, str):
         
         return form_picture
@@ -99,7 +101,7 @@ def save_profile_picture(form_picture):
     profile_pics_folder = os.path.join(app.root_path, 'static/profile_pics')
     if not os.path.exists(profile_pics_folder):
         os.makedirs(profile_pics_folder)
-
+    print(f'Picture path: {picture_path}')
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
@@ -135,6 +137,8 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
+            # session['last_seen'] = datetime.now()
+            # login_user(user)
             return redirect(url_for('home_page'))
         else:
             flash('Invalid username or password', 'danger')
@@ -149,7 +153,7 @@ def profile_edit():
 
     if form.validate_on_submit():
         try:
-         
+            # session['last_seen'] = datetime.now()
             form.populate_obj(current_user) 
 
            
@@ -208,7 +212,9 @@ def register():
             password=hashed_password
         )
         if form.profile_picture.data:
+            print("Form picture before saving:", form.profile_picture.data)
             picture_file = save_profile_picture(form.profile_picture.data)
+            print("Picture file after saving:", picture_file)
             new_user.profile_picture = picture_file
         db.session.add(new_user)
         db.session.commit()

@@ -15,7 +15,11 @@
 </head>
 
 <body>
-    <!-- <div class="arrow"><a href="#"><box-icon class="icon" name='up-arrow-alt'></box-icon></a></div> -->
+
+    <div class="uppar-button" id="uppar-button">
+        <a href="#home"><box-icon class="up-arrow-class" name='up-arrow-alt'></box-icon></a>
+    </div>
+
     <nav>
         {% if current_user.is_authenticated %}
         <p>Welcome, {{ current_user.name }}!</p>
@@ -132,6 +136,21 @@
               }
             }
           };
+    </script>
+    <script>
+        window.addEventListener("scroll", function () {
+            var backToTopButton = document.getElementById("uppar-button");
+            if (window.scrollY > 200) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+        
+        document.getElementById("uppar-button").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        
     </script>
 </body>
 
