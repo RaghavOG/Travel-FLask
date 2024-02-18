@@ -4,10 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ current_user.name }}'s Profile</title>
-
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}" />
 </head>
 <body>
+    <nav>
+        {% if current_user.is_authenticated %}
+        <p>Welcome, {{ current_user.name }}!</p>
+        {% else %}
+
+        <p>Trippy - Your Wishlist</p>
+
+        {% endif %}
+        <!-- search bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+            <button><box-icon name="search"></box-icon></button>
+
+            {% if current_user.is_authenticated %}
+            <div class="profile-dropdown">
+                <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" id="profile-pic" onclick="toggleProfileDropdown()">
+                <div class="profile-dropdown-content" id="profile-dropdown-content">
+                  <a href="{{ url_for('home_page') }}">Home</a>
+                  <a href="{{ url_for('wishlist') }}">Wishlist</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+              </div>
+            {% else %}
+            <div id="login-button">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+
+            {% endif %}
+        </div>
+    </nav>
+
     <div class="profile-container">
         <h1>{{ current_user.name }}'s Profile</h1>
         

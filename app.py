@@ -45,6 +45,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     profile_picture = db.Column(db.String(100), default='default.jpg')
     
+    wishlist = db.relationship('WishlistItem', backref='user', lazy=True)
+    
     def get_profile_picture_url(self):
         if not self.profile_picture or self.profile_picture == 'default.jpg':
             return url_for('static', filename='profile_pics/default.jpg')
@@ -53,6 +55,14 @@ class User(db.Model, UserMixin):
 
 
 
+class WishlistItem(db.Model):
+    
+    def __init__(self, location):
+        self.location = location
+    id = db.Column(db.Integer, primary_key=True)
+    location_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
 class EditProfileForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired(), Length(min=2, max=50)], render_kw={"placeholder": "Name"})
     phone_number = StringField('Phone Number', validators=[InputRequired(), Length(min=10, max=15)], render_kw={"placeholder": "Phone Number"})
@@ -85,6 +95,39 @@ class RegisterForm(FlaskForm):
             raise ValidationError(
                 'That username already exists. Please choose a different one.')
 
+
+
+@app.route('/api/add_to_wishlist/<int:location_id>', methods=['POST'])
+@login_required  # Ensure the user is logged in to add to the wishlist
+def add_to_wishlist(location_id):
+    print(f"Adding location {location_id} to wishlist for user {current_user.id}")
+
+    # Check if the location is not already in the user's wishlist
+    if not WishlistItem.query.filter_by(user_id=current_user.id, location_id=location_id).first():
+        wishlist_item = WishlistItem(location_id=location_id, user_id=current_user.id)
+        db.session.add(wishlist_item)
+        db.session.commit()
+        print("Location added to wishlist successfully")
+        return jsonify({'message': 'Location added to wishlist successfully'})
+    else:
+        print("Location is already in the wishlist")
+        return jsonify({'message': 'Location is already in the wishlist'})
+
+@app.route('/wishlist')
+@login_required
+def wishlist():
+    user_wishlist = WishlistItem.query.filter_by(user_id=current_user.id).all()
+    print(f"Wishlist Data: {user_wishlist}")
+    return render_template('wishlist.html', wishlist_data=user_wishlist)
+
+# def get_user_wishlist(user_id):
+#     # Replace this with your database query to fetch wishlist items for the user
+#     wishlist_items = WishlistItem.query.filter_by(user_id=user_id).all()
+#     return wishlist_items
+
+# def get_location_by_id(location_id):
+#     # Replace this with your logic to fetch the Location object based on the provided location_id
+#     return Location.query.get(location_id) 
 
 def save_profile_picture(form_picture):
     print(f'Form picture: {form_picture}')

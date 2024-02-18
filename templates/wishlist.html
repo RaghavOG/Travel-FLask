@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Wishlist</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="../static/home.css" />
+    <style>
+        #login-button {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="../static/home.css" />
+</head>
+
+<body>
+
+    <!-- <div class="uppar-button" id="uppar-button">
+        <a href="#home"><box-icon class="up-arrow-class" name='up-arrow-alt'></box-icon></a>
+    </div> -->
+
+    <nav>
+        {% if current_user.is_authenticated %}
+        <p>Welcome, {{ current_user.name }}!</p>
+        {% else %}
+
+        <p>Trippy - Your Wishlist</p>
+
+        {% endif %}
+        <!-- search bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+            <button><box-icon name="search"></box-icon></button>
+
+            {% if current_user.is_authenticated %}
+            <div class="profile-dropdown">
+                <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" id="profile-pic" onclick="toggleProfileDropdown()">
+                <div class="profile-dropdown-content" id="profile-dropdown-content">
+                  <a href="{{ url_for('home_page') }}">Home</a>
+                  <a href="{{ url_for('profile') }}">Profile</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+              </div>
+            {% else %}
+            <div id="login-button">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="hr"></div>
+
+    <h1 class="heading-locations">Your Wishlist</h1>
+    <div class="category-container">
+        {% for wishlist_item in wishlist_data %}
+        {% set location = get_location_by_id(wishlist_item.location_id) %}
+        {% if location %}
+            <div class="location-container">
+                <a href="{{ url_for('destination_page', destination_name=location.name) }}">
+                    <div class="location-div" id="{{ location.category }}">
+                        <!-- ... (rest of your code) -->
+                    </div>
+                </a>
+            </div>
+            <div class="hr"></div>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var isLoggedIn = "{{ current_user.is_authenticated }}";
+                var loginButton = document.getElementById("login-button");
+                if (loginButton) {
+                    loginButton.classList.toggle("hidden", isLoggedIn);
+                }
+        
+                function toggleProfileDropdown() {
+                    var dropdown = document.getElementById("profile-dropdown-content");
+                    if (dropdown) {
+                        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+                    }
+                }
+        
+                // Close the dropdown if the user clicks outside of it
+                window.addEventListener("click", function (event) {
+                    if (!event.target.matches('#profile-pic')) {
+                        var dropdown = document.getElementById("profile-dropdown-content");
+                        if (dropdown && dropdown.style.display === "block") {
+                            dropdown.style.display = "none";
+                        }
+                    }
+                });
+            });
+        </script>
+        
+    <!-- <script>
+        window.addEventListener("scroll", function () {
+            var backToTopButton = document.getElementById("uppar-button");
+            if (window.scrollY > 200) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+        
+        document.getElementById("uppar-button").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        
+    </script> -->
+
+</body>
+
+</html>

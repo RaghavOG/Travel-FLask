@@ -38,6 +38,7 @@
                 <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" id="profile-pic" onclick="toggleProfileDropdown()">
                 <div class="profile-dropdown-content" id="profile-dropdown-content">
                   <a href="{{ url_for('profile') }}">Profile</a>
+                  <a href="{{ url_for('wishlist') }}">Your Wishlist</a>
                   <a href="{{ url_for('logout') }}">Logout</a>
                 </div>
               </div>
@@ -107,6 +108,10 @@
                     <img src="{{ location.image }}" alt="location image"  />
                     <p class="name">{{location.name}}</p>
                     <p class="price">Price : {{location.price}}</p>
+                    <button class="heart-icon" onclick="addToWishlist('{{ location.id }}')">
+                        <box-icon name='heart'></box-icon>
+                    </button>
+
                     <p   class="rating">Rating : {{location.rating}}/5 </p>
                     <p class="discription">{{location.description}}</p>
                 </div></a>
@@ -150,6 +155,40 @@
         document.getElementById("uppar-button").addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
+        
+    </script>
+
+    <script>
+        function addToWishlist(locationId) {
+            var isLoggedIn = "{{ current_user.is_authenticated }}";
+            
+            // If not authenticated, redirect to the login page
+            if (!isLoggedIn) {
+                window.location.href = "{{ url_for('login') }}";
+                return;
+            }
+        
+            console.log(`Adding location ${locationId} to wishlist`);
+        
+            // Use JavaScript to send an AJAX request to your Flask route to add to wishlist
+            fetch(`/api/add_to_wishlist/${locationId}`, {
+                method: 'POST',
+                credentials: 'include'  // Include this if using sessions
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Location added to wishlist!');
+                    alert('Location added to wishlist!');
+                } else {
+                    console.error('Failed to add location to wishlist.');
+                    alert('Failed to add location to wishlist.');
+                }
+            })
+            .catch(error => {
+                console.error('Error during fetch:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
         
     </script>
 </body>

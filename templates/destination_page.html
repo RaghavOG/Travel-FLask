@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/destination_page.css" />
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
     <title>{{ destination.name }}</title>
 </head>
 
@@ -13,8 +15,9 @@
 
     <nav>
         {% if current_user.is_authenticated %}
-        <p>Trippy - Chose Your Destination</p>
+        <p>Welcome, {{ current_user.name }}!</p>
         {% else %}
+
         <p>Trippy - Chose Your Destination</p>
 
         {% endif %}
@@ -24,9 +27,14 @@
             <button><box-icon name="search"></box-icon></button>
 
             {% if current_user.is_authenticated %}
-            <div id="login-button">
-                <a href="{{ url_for('logout') }}">Logout</a>
-            </div>
+            <div class="profile-dropdown">
+                <img src="{{ current_user.get_profile_picture_url() }}" alt="Profile Pic" id="profile-pic" onclick="toggleProfileDropdown()">
+                <div class="profile-dropdown-content" id="profile-dropdown-content">
+                  <a href="{{ url_for('profile') }}">Profile</a>
+                  <a href="{{ url_for('wishlist') }}">Your Wishlist</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+              </div>
             {% else %}
             <div id="login-button">
                 <a href="{{ url_for('login') }}">Login</a>
