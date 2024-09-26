@@ -61,7 +61,7 @@ Activate the virtual environment:
 Install the required Python packages listed in `requirements.txt`:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirement.txt
 ```
 
 
